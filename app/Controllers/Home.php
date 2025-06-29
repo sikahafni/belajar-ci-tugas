@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ProductModel; 
 use App\Models\TransactionModel;
-use App\Models\TrasactionDetailModel;
+use App\Models\TransactionDetailModel;
 
 class Home extends BaseController
 {
