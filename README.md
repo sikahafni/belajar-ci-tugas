@@ -90,6 +90,7 @@ Proyek menggunakan struktur MVC CodeIgniter 4:
   - ProdukController.php - Manajemen produk
   - TransaksiController.php - Proses transaksi
   - DiskonController.php - Manajemen Diskon
+  - ProdukKategoriController.php - Manajemen Kategori Produk
 - app/Models - Model untuk interaksi database
   - ProductModel.php - Model produk
   - UserModel.php - Model pengguna
@@ -99,5 +100,6 @@ Proyek menggunakan struktur MVC CodeIgniter 4:
   - v_diskon.php - Halaman Diskon
   - v_checkout.php - Halaman Checkout
   - v_kategori.php - Halaman Kategori Produk
+  - v_profile - History Transaksi Pembelian
 - public/img - Gambar produk dan aset
 - public/NiceAdmin - Template admin
