@@ -20,6 +20,10 @@ Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4]
 - Sistem Transaksi
   - Proses checkout
   - Riwayat transaksi
+- Sistem Diskon
+  - Diskon ditampilkan di header setelah login
+  - Diskon disimpan di session pengguna saat login
+  - Diskon otomatis diterapkan pada total belanja saat checkout
 - Panel Admin
   - Manajemen produk (CRUD)
   - Manajemen kategori
@@ -40,7 +44,7 @@ Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4]
 
 1. **Clone repository ini**
    ```bash
-   git clone [URL repository]
+   git clone [https://github.com/sikahafni/belajar-ci-tugas]
    cd belajar-ci-tugas
    ```
 2. **Install dependensi**
@@ -64,6 +68,12 @@ Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4]
    ```bash
    php spark db:seed UserSeeder
    ```
+   ```bash
+   php spark db:ProdukKategoriSeeder
+   ```
+   ```bash
+   php spark db:seed DiskonSeeder
+   ```
 6. **Jalankan server**
    ```bash
    php spark serve
@@ -85,5 +95,10 @@ Proyek menggunakan struktur MVC CodeIgniter 4:
 - app/Views - Template dan komponen UI
   - v_produk.php - Tampilan produk
   - v_keranjang.php - Halaman keranjang
+  - v_diskon.php - Halaman Diskon
 - public/img - Gambar produk dan aset
 - public/NiceAdmin - Template admin
+
+## Dashboard Sederhana
+
+- Berisi data dari webservice Toko yang ada di folder public
