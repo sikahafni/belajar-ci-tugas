@@ -94,6 +94,10 @@ Proyek menggunakan struktur MVC CodeIgniter 4:
 - app/Models - Model untuk interaksi database
   - ProductModel.php - Model produk
   - UserModel.php - Model pengguna
+  - DiskonModel.php - Model Diskon
+  - ProdukKategoriModel.php - Produk Kategori Model
+  - TransactionDetailModel.php - Transaksi Detail Model
+  - TransactionModel.php - Transaksi Model
 - app/Views - Template dan komponen UI
   - v_produk.php - Tampilan produk
   - v_keranjang.php - Halaman keranjang
