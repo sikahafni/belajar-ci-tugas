@@ -16,6 +16,14 @@
       </form>
     </div><!-- End Search Bar -->
 
+    <?php if (session()->get('diskon')) : ?>
+    <span class="badge bg-success ms-3" style="font-size: 14px; padding: 8px;">
+      Hari ini ada diskon <strong>Rp <?= number_format(session()->get('diskon'), 0, ',', '.') ?></strong> per item
+    </span>
+  <?php endif; ?>
+</div>
+
+
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
@@ -24,6 +32,8 @@
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
+
+
 
         <li class="nav-item dropdown">
 

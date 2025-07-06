@@ -33,45 +33,44 @@ $this->transaction_detail = new TransactionDetailModel();
     }
 
     public function cart_add()
-    {
-        $this->cart->insert(array(
-            'id'        => $this->request->getPost('id'),
-            'qty'       => 1,
-            'price'     => $this->request->getPost('harga'),
-            'name'      => $this->request->getPost('nama'),
-            'options'   => array('foto' => $this->request->getPost('foto'))
-        ));
-        session()->setflashdata('success', 'Produk berhasil ditambahkan ke keranjang. (<a href="' . base_url() . 'keranjang">Lihat</a>)');
-        return redirect()->to(base_url('/'));
+{
+    $harga = $this->request->getPost('harga');
+    $diskon = session()->get('diskon'); // Ambil dari session
+
+    if ($diskon && is_numeric($diskon)) {
+        $harga = max(0, $harga - $diskon); // Kurangi diskon, jangan minus
     }
 
-    public function cart_clear()
-    {
-        $this->cart->destroy();
-        session()->setflashdata('success', 'Keranjang Berhasil Dikosongkan');
-        return redirect()->to(base_url('keranjang'));
-    }
+    $this->cart->insert(array(
+        'id'        => $this->request->getPost('id'),
+        'qty'       => 1,
+        'price'     => $harga,
+        'name'      => $this->request->getPost('nama'),
+        'options'   => array(
+            'foto'   => $this->request->getPost('foto'),
+            'diskon' => $diskon ?? 0
+        )
+    ));
 
-    public function cart_edit()
-    {
-        $i = 1;
-        foreach ($this->cart->contents() as $value) {
-            $this->cart->update(array(
-                'rowid' => $value['rowid'],
-                'qty'   => $this->request->getPost('qty' . $i++)
-            ));
-        }
+    session()->setFlashdata('success', 'Produk berhasil ditambahkan ke keranjang. (<a href="' . base_url() . 'keranjang">Lihat</a>)');
+    return redirect()->to(base_url('/'));
+}
 
-        session()->setflashdata('success', 'Keranjang Berhasil Diedit');
-        return redirect()->to(base_url('keranjang'));
-    }
 
-    public function cart_delete($rowid)
-    {
-        $this->cart->remove($rowid);
-        session()->setflashdata('success', 'Keranjang Berhasil Dihapus');
-        return redirect()->to(base_url('keranjang'));
-    }
+public function cart_clear()
+{
+    $this->cart->destroy();
+    session()->setFlashdata('success', 'Keranjang Berhasil Dikosongkan');
+    return redirect()->to(base_url('keranjang'));
+}
+
+public function cart_delete($rowid)
+{
+    $this->cart->remove($rowid);
+    session()->setFlashdata('success', 'Keranjang Berhasil Dihapus');
+    return redirect()->to(base_url('keranjang'));
+}
+
 
     public function checkout()
 {
@@ -155,18 +154,22 @@ public function buy()
         $last_insert_id = $this->transaction->getInsertID();
 
         foreach ($this->cart->contents() as $value) {
+            $diskon = $value['options']['diskon'] ?? 0;
+            $harga_awal = $value['price'] + $diskon;
+        
             $dataFormDetail = [
                 'transaction_id' => $last_insert_id,
                 'product_id' => $value['id'],
                 'jumlah' => $value['qty'],
-                'diskon' => 0,
-                'subtotal_harga' => $value['qty'] * $value['price'],
+                'diskon' => $diskon,
+                'subtotal_harga' => $value['qty'] * ($harga_awal - $diskon),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ];
-
+        
             $this->transaction_detail->insert($dataFormDetail);
         }
+        
 
         $this->cart->destroy();
  
