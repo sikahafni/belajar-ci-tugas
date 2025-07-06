@@ -8,6 +8,7 @@ Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4]
 - [Persyaratan Sistem](#persyaratan-sistem)
 - [Instalasi](#instalasi)
 - [Struktur Proyek](#struktur-proyek)
+- [Dashboard Sederhana](#dashboard-sederhana)
 
 ## Fitur
 
