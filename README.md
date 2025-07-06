@@ -8,7 +8,6 @@ Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4]
 - [Persyaratan Sistem](#persyaratan-sistem)
 - [Instalasi](#instalasi)
 - [Struktur Proyek](#struktur-proyek)
-- [Dashboard Sederhana](#dashboard-sederhana)
 
 ## Fitur
 
@@ -45,7 +44,7 @@ Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4]
 
 1. **Clone repository ini**
    ```bash
-   git clone [https://github.com/sikahafni/belajar-ci-tugas]
+   git clone https://github.com/sikahafni/belajar-ci-tugas
    cd belajar-ci-tugas
    ```
 2. **Install dependensi**
@@ -90,6 +89,7 @@ Proyek menggunakan struktur MVC CodeIgniter 4:
   - AuthController.php - Autentikasi pengguna
   - ProdukController.php - Manajemen produk
   - TransaksiController.php - Proses transaksi
+  - DiskonController.php - Manajemen Diskon
 - app/Models - Model untuk interaksi database
   - ProductModel.php - Model produk
   - UserModel.php - Model pengguna
@@ -97,9 +97,7 @@ Proyek menggunakan struktur MVC CodeIgniter 4:
   - v_produk.php - Tampilan produk
   - v_keranjang.php - Halaman keranjang
   - v_diskon.php - Halaman Diskon
+  - v_checkout.php - Halaman Checkout
+  - v_kategori.php - Halaman Kategori Produk
 - public/img - Gambar produk dan aset
 - public/NiceAdmin - Template admin
-
-## Dashboard Sederhana
-
-- Berisi data dari webservice Toko yang ada di folder public
